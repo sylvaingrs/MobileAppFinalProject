@@ -21,6 +21,7 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.tasks.await
 
 class User(
@@ -325,6 +326,15 @@ fun NumberInput(onValueChanged: (String) -> Unit) {
         )
     }
 }
+/*
+fun IsOkay(db: FirebaseFirestore) {
+    if (
+
+    ) {
+
+    }
+}
+ */
 
 val pal_1_1: Color = Color(179,200,207)
 val pal_1_2: Color = Color(190,215,220)

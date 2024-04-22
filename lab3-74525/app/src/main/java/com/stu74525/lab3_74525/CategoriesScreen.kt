@@ -1,6 +1,7 @@
 package com.stu74525.lab3_74525
 
 import android.annotation.SuppressLint
+import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -38,6 +39,16 @@ import androidx.navigation.NavController
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ProductCategoriesScreen(navController: NavController) {
+
+    db.collection("orders-history").document(auth.currentUser!!.uid).set(
+        hashMapOf(
+            "unusued" to "unusued"
+        )
+    )
+        .addOnSuccessListener {
+            Log.d(MainActivity.TAG, "OUIIIIIIIIIIIIIIIIIIIIIIII\n\n")
+        }
+        .addOnFailureListener { Log.d(MainActivity.TAG, "NONNNNNNNNNN\n\n") }
 
     Scaffold(
         topBar = {
@@ -141,7 +152,7 @@ fun ProductCategoriesScreen(navController: NavController) {
                                         .padding(top = 10.dp, bottom = 20.dp),
                                     color = Color.DarkGray
                                 )
-
+db
                             }
                         }
                     }
