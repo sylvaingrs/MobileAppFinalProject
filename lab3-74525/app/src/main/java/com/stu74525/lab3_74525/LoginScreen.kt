@@ -173,8 +173,10 @@ fun LoginScreen(navController: NavController) {
                 )
                 Button(
                     onClick = {
+                        Log.d(MainActivity.TAG, "TEST OUT THE ONCLICK\n")
                               auth.signInWithEmailAndPassword(email, password)
                                   .addOnCompleteListener {task ->
+                                      Log.d(MainActivity.TAG, "TEST IN THE ONCLICK\n")
                                       if (task.isSuccessful) {
                                           val user = auth.currentUser
                                           val userId = user?.uid
@@ -210,6 +212,9 @@ fun LoginScreen(navController: NavController) {
                                   }
                                   .addOnFailureListener {
                                       Log.e(TAG, "FAILURE TO LOG IN\n\n\n\n")
+                                  }
+                                  .addOnCanceledListener {
+                                      Log.e(TAG, "CANCELLED\n\n\n\n")
                                   }
                     },
                     modifier = Modifier

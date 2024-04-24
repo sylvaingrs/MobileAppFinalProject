@@ -169,7 +169,7 @@ fun OrderHistoryScreen(navController: NavController) {
 
                                     ) {
                                         Text(
-                                            text = "Amount : " + oldCartFirestore.amount + "€",
+                                            text = "Amount : " + oldCartFirestore.amount!!.toFloat() + "€",
                                             fontSize = 20.sp
                                         )
                                         Text(

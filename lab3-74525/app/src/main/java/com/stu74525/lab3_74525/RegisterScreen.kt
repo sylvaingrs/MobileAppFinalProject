@@ -2,13 +2,17 @@ package com.stu74525.lab3_74525
 
 import android.util.Log
 import android.util.Patterns
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
@@ -42,6 +46,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalFocusManager
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
@@ -234,8 +239,17 @@ fun ShowForm(navController: NavController) {
                                         Log.d(TAG, "Les données de l'utilisateur n'existent pas dans Firestore\n\n\n")
                                     }
                                 }
-
-                            db.collection("orders_history")
+                            db.collection("cart").document(userId).set(
+                                hashMapOf(
+                                    "unused" to "unused",
+                                    "amount" to 0
+                                )
+                            )
+                            db.collection("orders-history").document(userId).set(
+                                hashMapOf(
+                                    "unused" to "unused"
+                                )
+                            )
                         }
                         navController.navigate(Routes.CategoriesScreen.route)
                     } else {
@@ -256,13 +270,28 @@ fun ShowForm(navController: NavController) {
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Top
     ) {
-        Text(
-            text = "Register to our app",
-            fontSize = 30.sp,
-            modifier = Modifier
-                .padding(vertical = 20.dp),
-            color = Color.DarkGray
-        )
+        Row(
+
+        ) {
+            Image(
+                painter = painterResource(id = R.drawable.back),
+                contentDescription = null,
+                modifier = Modifier
+                    .size(45.dp)
+                    .clickable {
+                        navController.popBackStack()
+                    }
+                    .padding(5.dp)
+            )
+            Text(
+                text = "Register to our app",
+                fontSize = 30.sp,
+                modifier = Modifier
+                    .padding(vertical = 20.dp),
+                color = Color.DarkGray
+            )
+        }
+
 
         RegisterScreen(
             value = name,

@@ -10,6 +10,9 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.stu74525.lab3_74525.ui.theme.Lab374525Theme
 import coil.compose.rememberImagePainter
+import com.google.firebase.FirebaseApp
+
+
 lateinit var auth: FirebaseAuth
 
 var currentUser: FirebaseUser? = null
@@ -33,6 +36,8 @@ class MainActivity : ComponentActivity() {
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
 
+        FirebaseApp.initializeApp(this)
+
         super.onCreate(savedInstanceState)
         setContent {
             Lab374525Theme {
@@ -50,7 +55,6 @@ class MainActivity : ComponentActivity() {
                     Log.d(TAG, "auth is null\n")
                     AppNavigation(0)
                 }
-
             }
         }
     }
